@@ -6,7 +6,7 @@ var sign            = Argument<bool>("sign", false);
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 var buildArtifacts      = Directory("./artifacts/packages");
-var packageVersion      = "4.0.1";
+var packageVersion      = "5.0.0-preview.1";
 
 ///////////////////////////////////////////////////////////////////////////////
 // Clean
@@ -72,12 +72,7 @@ Task("Pack")
         OutputDirectory = buildArtifacts
     };
 
-    if (AppVeyor.IsRunningOnAppVeyor)
-    {
-        settings.Version = packageVersion + "-b" + AppVeyor.Environment.Build.Number.ToString().PadLeft(4,'0');
-    }
-
-    NuGetPack("./feed/IdentityServer4.Templates.nuspec", settings);
+    NuGetPack("./feed/Duende.IdentityServer.Templates.nuspec", settings);
     
     if (sign)
     {
