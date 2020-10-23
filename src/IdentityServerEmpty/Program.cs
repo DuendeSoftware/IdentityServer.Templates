@@ -9,7 +9,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 
-namespace IdentityServer4Empty
+namespace IdentityServerEmpty
 {
     public class Program
     {
