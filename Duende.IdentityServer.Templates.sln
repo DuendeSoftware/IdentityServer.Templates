@@ -5,16 +5,15 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5B4906FF-64CC-4A42-A145-221F083EE165}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4Empty", "src\IdentityServer4Empty\IdentityServer4Empty.csproj", "{D324CA74-877A-43AB-B978-38416BBE300A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerEmpty", "src\IdentityServerEmpty\IdentityServerEmpty.csproj", "{D324CA74-877A-43AB-B978-38416BBE300A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4InMem", "src\IdentityServer4InMem\IdentityServer4InMem.csproj", "{6CEEA2E8-C482-4197-93D7-2AC94F99D0D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerInMem", "src\IdentityServerInMem\IdentityServerInMem.csproj", "{6CEEA2E8-C482-4197-93D7-2AC94F99D0D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4AspNetIdentity", "src\IdentityServer4AspNetIdentity\IdentityServer4AspNetIdentity.csproj", "{91FA2AC8-1DF5-4A0F-B709-8EFF32B4FA08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{91FA2AC8-1DF5-4A0F-B709-8EFF32B4FA08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4EntityFramework", "src\IdentityServer4EntityFramework\IdentityServer4EntityFramework.csproj", "{46000F46-B039-49F3-AACD-42E4FBC11E94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerEntityFramework", "src\IdentityServerEntityFramework\IdentityServerEntityFramework.csproj", "{46000F46-B039-49F3-AACD-42E4FBC11E94}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4Admin", "src\IdentityServer4Admin\IdentityServer4Admin.csproj", "{5C903922-2014-40F6-920A-2E02E0D7F5E4}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
