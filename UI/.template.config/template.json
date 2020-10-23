@@ -1,16 +1,16 @@
 {
-  "author": "Brock Allen, Dominick Baier",
+  "author": "Duende Software",
   "classifications": [
     "Web",
-    "IdentityServer4"
+    "IdentityServer"
   ],
-  "name": "IdentityServer4 Quickstart UI (UI assets only)",
-  "identity": "IdentityServer4.UI",
-  "groupIdentity": "IdentityServer4.UI",
-  "shortName": "is4ui",
+  "name": "Duende IdentityServer Quickstart UI (UI assets only)",
+  "identity": "IdentityServer.UI",
+  "groupIdentity": "IdentityServer.UI",
+  "shortName": "isui",
   "tags": {
     "language": "C#"
   },
-  "sourceName": "IdentityServer4.Quickstart.UI",
+  "sourceName": "IdentityServer.Quickstart.UI",
   "preferNameDirectory": "true"
 }
