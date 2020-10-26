@@ -264,5 +264,5 @@ CREATE INDEX "IX_IdentityResourceProperties_IdentityResourceId" ON "IdentityReso
 CREATE UNIQUE INDEX "IX_IdentityResources_Name" ON "IdentityResources" ("Name");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20200624171023_Config', '3.1.0');
+VALUES ('20201026171208_Configuration', '3.1.9');
 

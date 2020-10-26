@@ -2,15 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using IdentityServer4.EntityFramework.Storage;
 using Serilog;
+using Duende.IdentityServer.EntityFramework.Storage;
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Duende.IdentityServer.EntityFramework.Mappers;
 
-namespace IdentityServer4EntityFramework
+namespace IdentityServerEntityFramework
 {
     public class SeedData
     {
