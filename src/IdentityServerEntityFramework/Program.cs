@@ -12,7 +12,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
 
-namespace IdentityServer4EntityFramework
+namespace IdentityServerEntityFramework
 {
     public class Program
     {
