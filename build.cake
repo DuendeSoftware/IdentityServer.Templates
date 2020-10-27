@@ -56,12 +56,6 @@ Task("Copy")
     // copy the UI files
     files = GetFiles("./ui/**/*.*");
     CopyFiles(files, "./feed/content/ui", true);
-
-    // copy license
-    CopyFiles("./feed/LICENSE.txt", "./feed/content");
-
-    // copy icon
-    CopyFiles("./feed/icon.png", "./feed/content");
 });
 
 ///////////////////////////////////////////////////////////////////////////////
