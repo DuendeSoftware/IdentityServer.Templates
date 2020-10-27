@@ -49,13 +49,16 @@ Task("Copy")
 {
     CreateDirectory("./feed/content");
 
-    // copy the singel csproj templates
+    // copy the single csproj templates
     var files = GetFiles("./src/**/*.*");
     CopyFiles(files, "./feed/content", true);
 
     // copy the UI files
     files = GetFiles("./ui/**/*.*");
     CopyFiles(files, "./feed/content/ui", true);
+
+    // copy license
+    CopyFiles("./feed/LICENSE.txt", "./feed/content");
 });
 
 ///////////////////////////////////////////////////////////////////////////////
