@@ -1,5 +1,5 @@
 # IdentityServer.Templates
-dotnet new templates for Duende IdentityServer
+.NET CLI Templates for Duende IdentityServer
 
 ### dotnet new isempty
 Creates a minimal Duende IdentityServer project without a UI.
