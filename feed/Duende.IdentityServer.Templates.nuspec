@@ -9,6 +9,7 @@
     <iconUrl>https://raw.githubusercontent.com/IdentityServer/Artwork/master/Logos/IDserver_icon128.jpg</iconUrl>
     <projectUrl>https://github.com/IdentityServer/IdentityServer4.Templates</projectUrl>
     <license type="file">LICENSE.txt</license>
+    <icon>icon.png</icon>
 
     <packageTypes>
       <packageType name="Template" />
@@ -16,5 +17,6 @@
   </metadata>
   <files>
     <file src="LICENSE.txt" target="" />
+    <file src="icon.png" target="" />
   </files>
 </package>

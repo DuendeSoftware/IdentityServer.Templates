@@ -59,6 +59,9 @@ Task("Copy")
 
     // copy license
     CopyFiles("./feed/LICENSE.txt", "./feed/content");
+
+    // copy icon
+    CopyFiles("./feed/icon.png", "./feed/content");
 });
 
 ///////////////////////////////////////////////////////////////////////////////
