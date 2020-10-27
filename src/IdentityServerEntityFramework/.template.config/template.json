@@ -4,7 +4,7 @@
     "Web",
     "IdentityServer"
   ],
-  "name": "IdentityServer with Entity Framework Stores",
+  "name": "Duende IdentityServer with Entity Framework Stores",
   "identity": "IdentityServer.EntityFramework",
   "groupIdentity": "IdentityServer.EntityFramework",
   "shortName": "isef",
