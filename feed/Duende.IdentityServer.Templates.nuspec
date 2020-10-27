@@ -8,13 +8,13 @@
     <language>en-US</language>
     <iconUrl>https://raw.githubusercontent.com/IdentityServer/Artwork/master/Logos/IDserver_icon128.jpg</iconUrl>
     <projectUrl>https://github.com/IdentityServer/IdentityServer4.Templates</projectUrl>
-    <license type="file">LICENSE</license>
+    <license type="file">LICENSE.txt</license>
 
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
   </metadata>
   <files>
-    <file src="LICENSE" target="" />
+    <file src="LICENSE.txt" target="" />
   </files>
 </package>
