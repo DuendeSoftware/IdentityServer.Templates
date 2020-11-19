@@ -20,7 +20,7 @@ Adds a basic Duende IdentityServer that uses Entity Framework for configuration 
 
 Install with:
 
-`dotnet new --install Duende.IdentityServer.Templates::5.0.0-preview.1.6`
+`dotnet new --install Duende.IdentityServer.Templates::5.0.0-preview.1`
 
 If you need to set back your dotnet new list to "factory defaults", use this command:
 
