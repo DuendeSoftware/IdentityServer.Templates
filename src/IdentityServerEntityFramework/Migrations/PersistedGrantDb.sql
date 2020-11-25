@@ -15,6 +15,16 @@ CREATE TABLE "DeviceCodes" (
     "Data" TEXT NOT NULL
 );
 
+CREATE TABLE "Keys" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_Keys" PRIMARY KEY,
+    "Version" INTEGER NOT NULL,
+    "Created" TEXT NOT NULL,
+    "Algorithm" TEXT NOT NULL,
+    "IsX509Certificate" INTEGER NOT NULL,
+    "DataProtected" INTEGER NOT NULL,
+    "Data" TEXT NOT NULL
+);
+
 CREATE TABLE "PersistedGrants" (
     "Key" TEXT NOT NULL CONSTRAINT "PK_PersistedGrants" PRIMARY KEY,
     "Type" TEXT NOT NULL,
@@ -39,5 +49,5 @@ CREATE INDEX "IX_PersistedGrants_SubjectId_ClientId_Type" ON "PersistedGrants" (
 CREATE INDEX "IX_PersistedGrants_SubjectId_SessionId_Type" ON "PersistedGrants" ("SubjectId", "SessionId", "Type");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20201026171203_Grants', '3.1.9');
+VALUES ('20201125094851_Grants', '3.1.9');
 
