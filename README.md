@@ -25,3 +25,8 @@ Install with:
 If you need to set back your dotnet new list to "factory defaults", use this command:
 
 `dotnet new --debug:reinit`
+
+To uninstall the templates for IdentityServer4, use 
+
+`dotnet new -u IdentityServer4.Templates`
+
