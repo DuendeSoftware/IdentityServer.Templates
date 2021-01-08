@@ -24,7 +24,7 @@ namespace IdentityServerEmpty
 
             var builder = services.AddIdentityServer(options =>
             {
-                // see https://docs.duendesoftware.com/identityserver/v5/basics/resources
+                // https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
                 .AddInMemoryIdentityResources(Config.IdentityResources)
