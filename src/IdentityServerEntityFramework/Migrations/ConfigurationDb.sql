@@ -11,6 +11,7 @@ CREATE TABLE "ApiResources" (
     "Description" TEXT NULL,
     "AllowedAccessTokenSigningAlgorithms" TEXT NULL,
     "ShowInDiscoveryDocument" INTEGER NOT NULL,
+    "RequireResourceIndicator" INTEGER NOT NULL,
     "Created" TEXT NOT NULL,
     "Updated" TEXT NULL,
     "LastAccessed" TEXT NULL,
@@ -264,5 +265,5 @@ CREATE INDEX "IX_IdentityResourceProperties_IdentityResourceId" ON "IdentityReso
 CREATE UNIQUE INDEX "IX_IdentityResources_Name" ON "IdentityResources" ("Name");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20201125094857_Configuration', '3.1.9');
+VALUES ('20210113214823_Configuration', '3.1.9');
 

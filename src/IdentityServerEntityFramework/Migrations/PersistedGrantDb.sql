@@ -19,6 +19,7 @@ CREATE TABLE "Keys" (
     "Id" TEXT NOT NULL CONSTRAINT "PK_Keys" PRIMARY KEY,
     "Version" INTEGER NOT NULL,
     "Created" TEXT NOT NULL,
+    "Use" TEXT NULL,
     "Algorithm" TEXT NOT NULL,
     "IsX509Certificate" INTEGER NOT NULL,
     "DataProtected" INTEGER NOT NULL,
@@ -42,6 +43,8 @@ CREATE UNIQUE INDEX "IX_DeviceCodes_DeviceCode" ON "DeviceCodes" ("DeviceCode");
 
 CREATE INDEX "IX_DeviceCodes_Expiration" ON "DeviceCodes" ("Expiration");
 
+CREATE INDEX "IX_Keys_Use" ON "Keys" ("Use");
+
 CREATE INDEX "IX_PersistedGrants_Expiration" ON "PersistedGrants" ("Expiration");
 
 CREATE INDEX "IX_PersistedGrants_SubjectId_ClientId_Type" ON "PersistedGrants" ("SubjectId", "ClientId", "Type");
@@ -49,5 +52,5 @@ CREATE INDEX "IX_PersistedGrants_SubjectId_ClientId_Type" ON "PersistedGrants" (
 CREATE INDEX "IX_PersistedGrants_SubjectId_SessionId_Type" ON "PersistedGrants" ("SubjectId", "SessionId", "Type");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20201125094851_Grants', '3.1.9');
+VALUES ('20210113214818_Grants', '3.1.9');
 
