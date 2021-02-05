@@ -1,0 +1,36 @@
+name: "CI"
+
+on:
+  push:
+    branches:
+    - main
+    - features/**
+    tags:
+    - '*.*.*'
+  pull_request:
+
+env:
+  DOTNET_NOLOGO: true
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [windows-latest]
+    name: ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+    - uses: actions/checkout@af513c7a016048ae468971c52ed77d9562c7c819
+    
+    - name: Setup dotnet (main)
+      uses: actions/setup-dotnet@v1
+      
+    - run: dotnet --info
+    
+    - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
+      env:
+        SignClientSecret: ${{ secrets.SIGNCLIENTSECRET }}
+      run: |
+        ./build.ps1 sign
+        dotnet nuget push .\artifacts\*.nupkg -s https://www.myget.org/F/duende_identityserver/api/v2/package -k ${{ secrets.MYGET }}
