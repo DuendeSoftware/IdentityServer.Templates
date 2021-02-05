@@ -55,33 +55,11 @@ if (!(Test-Path $NUGET_EXE)) {
 $ENV:NUGET_EXE = $NUGET_EXE
 
 ###########################################################################
-# INSTALL CAKE
-###########################################################################
-
-# Make sure Cake has been installed.
-$CakePath = Join-Path $ToolPath ".store\cake.tool\$CakeVersion"
-$CakeExePath = (Get-ChildItem -Path $ToolPath -Filter "dotnet-cake*" -File| ForEach-Object FullName | Select-Object -First 1)
-
-if ((!(Test-Path -Path $CakePath -PathType Container)) -or (!(Test-Path $CakeExePath -PathType Leaf))) {
-    & dotnet tool install --tool-path $ToolPath --version $CakeVersion Cake.Tool
-    if ($LASTEXITCODE -ne 0)
-    {
-        'Failed to install cake'
-        exit 1
-    }
-    $CakeExePath = (Get-ChildItem -Path $ToolPath -Filter "dotnet-cake*" -File| ForEach-Object FullName | Select-Object -First 1)
-}
-
-###########################################################################
-# RUN BUILD SCRIPT
+# PREPARE BUILD
 ###########################################################################
 Write-Host "build template code..."
 
-& "$CakeExePath" ./build.cake --bootstrap
-if ($LASTEXITCODE -eq 0)
-{
-    & "$CakeExePath" ./build.cake -Target="Build"
-}
+dotnet run --project build
 
 Write-Host "clean..."
 Invoke-Expression "git clean -xdf ./src"
@@ -94,9 +72,4 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 cd ..
 
 dotnet tool restore
-& "$CakeExePath" ./build.cake --bootstrap
-if ($LASTEXITCODE -eq 0)
-{
-    & "$CakeExePath" ./build.cake $args
-}
-exit $LASTEXITCODE
+dotnet run --project build -- sign
