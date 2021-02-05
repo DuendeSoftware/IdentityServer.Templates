@@ -9,11 +9,13 @@ namespace build
     {
         private const string solution = "Duende.IdentityServer.Templates.sln";
         private const string packOutput = "./artifacts";
+        private const string feedOutput = "./artifacts";
         private const string envVarMissing = " environment variable is missing. Aborting.";
 
         private static class Targets
         {
             public const string CleanPackOutput = "clean-pack-output";
+            public const string Copy = "copy";
             public const string Build = "build";
             public const string Pack = "pack";
             public const string SignPackage = "sign-package";
@@ -32,6 +34,23 @@ namespace build
                 {
                     Directory.Delete(packOutput, true);
                 }
+            });
+
+            Target(Targets.Copy, DependsOn(Targets.Build), () =>
+            {
+            //CreateDirectory("./feed/content");
+            var directory = Directory.CreateDirectory(feedOutput).FullName;
+
+
+
+
+    // copy the single csproj templates
+ //   var files = GetFiles("./src/**/*.*");
+//    CopyFiles(files, "./feed/content", true);
+
+    // copy the UI files
+   // files = GetFiles("./ui/**/*.*");
+    //CopyFiles(files, "./feed/content/ui", true);
             });
 
             Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
