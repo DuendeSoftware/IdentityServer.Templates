@@ -36,7 +36,7 @@ namespace build
                 }
             });
 
-            Target(Targets.Copy, DependsOn(Targets.Build), () =>
+            Target(Targets.Copy, () =>
             {
                 DirectoryCopy("./src", "./feed/content", true);
                 DirectoryCopy("./ui", "./feed/content/ui", true);
@@ -45,7 +45,7 @@ namespace build
             Target(Targets.Pack, DependsOn(Targets.Copy, Targets.CleanPackOutput), () =>
             {
                 var directory = Directory.CreateDirectory(packOutput).FullName;
-
+                
                 Run("./tools/nuget.exe", $"pack ./feed/Duende.IdentityServer.Templates.nuspec -OutputDirectory {directory} -Version {NugetPackageVersion}");
             });
 
