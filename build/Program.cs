@@ -7,9 +7,7 @@ namespace build
 {
     internal static class Program
     {
-        private const string solution = "Duende.IdentityServer.Templates.sln";
         private const string packOutput = "./artifacts";
-        private const string feedOutput = "./artifacts";
         private const string envVarMissing = " environment variable is missing. Aborting.";
 
         private static class Targets
@@ -38,19 +36,8 @@ namespace build
 
             Target(Targets.Copy, DependsOn(Targets.Build), () =>
             {
-            //CreateDirectory("./feed/content");
-            var directory = Directory.CreateDirectory(feedOutput).FullName;
-
-
-
-
-    // copy the single csproj templates
- //   var files = GetFiles("./src/**/*.*");
-//    CopyFiles(files, "./feed/content", true);
-
-    // copy the UI files
-   // files = GetFiles("./ui/**/*.*");
-    //CopyFiles(files, "./feed/content/ui", true);
+                DirectoryCopy("./src", "./feed/content", true);
+                DirectoryCopy("./ui", "./feed/content/ui", true);
             });
 
             Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
@@ -102,6 +89,42 @@ namespace build
                         $"--azure-key-vault-client-secret {signClientSecret} " +
                         "--azure-key-vault-certificate CodeSigning"
                         );
+            }
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // If the destination directory doesn't exist, create it.       
+            Directory.CreateDirectory(destDirName);
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string tempPath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(tempPath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string tempPath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                }
             }
         }
     }
