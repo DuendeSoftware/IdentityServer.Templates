@@ -7,6 +7,8 @@ namespace build
 {
     internal static class Program
     {
+        private const string NugetPackageVersion = "5.0.0";
+        
         private const string packOutput = "./artifacts";
         private const string envVarMissing = " environment variable is missing. Aborting.";
 
@@ -40,17 +42,11 @@ namespace build
                 DirectoryCopy("./ui", "./feed/content/ui", true);
             });
 
-            Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
+            Target(Targets.Pack, DependsOn(Targets.Copy, Targets.CleanPackOutput), () =>
             {
                 var directory = Directory.CreateDirectory(packOutput).FullName;
-                
-                Run("dotnet", $"pack ./src/Storage/Duende.IdentityServer.Storage.csproj -c Release -o {directory} --no-build --nologo");
-                Run("dotnet", $"pack ./src/IdentityServer/Duende.IdentityServer.csproj -c Release -o {directory} --no-build --nologo");
-                
-                Run("dotnet", $"pack ./src/EntityFramework.Storage/Duende.IdentityServer.EntityFramework.Storage.csproj -c Release -o {directory} --no-build --nologo");
-                Run("dotnet", $"pack ./src/EntityFramework/Duende.IdentityServer.EntityFramework.csproj -c Release -o {directory} --no-build --nologo");
-                
-                Run("dotnet", $"pack ./src/AspNetIdentity/Duende.IdentityServer.AspNetIdentity.csproj -c Release -o {directory} --no-build --nologo");
+
+                Run("./tools/nuget.exe", $"pack ./feed/Duende.IdentityServer.Templates.nuspec -OutputDirectory {directory} -Version {NugetPackageVersion}");
             });
 
             Target(Targets.SignPackage, DependsOn(Targets.Pack), () =>
@@ -88,7 +84,7 @@ namespace build
                         "--azure-key-vault-tenant-id ed3089f0-5401-4758-90eb-066124e2d907 " +
                         $"--azure-key-vault-client-secret {signClientSecret} " +
                         "--azure-key-vault-certificate CodeSigning"
-                        );
+                        ,noEcho: true);
             }
         }
 
@@ -114,7 +110,7 @@ namespace build
             foreach (FileInfo file in files)
             {
                 string tempPath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(tempPath, false);
+                file.CopyTo(tempPath, true);
             }
 
             // If copying subdirectories, copy them and their contents to new location.
