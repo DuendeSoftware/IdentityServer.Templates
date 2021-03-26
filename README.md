@@ -16,6 +16,9 @@ Adds a basic Duende IdentityServer that uses ASP.NET Identity for user managemen
 ### dotnet new isef
 Adds a basic Duende IdentityServer that uses Entity Framework for configuration and state management. If you seed the database, you get a couple of basic client and resource registrations, check the `SeedData.cs` file.
 
+### dotnet new bffjs
+Creates a basic JavaScript-based BFF host
+
 ## Installation 
 
 Install with:
