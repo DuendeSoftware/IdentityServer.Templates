@@ -2,9 +2,53 @@
 const todos = document.getElementById("todos");
 
 document.getElementById("createNewButton").addEventListener("click", createTodo);
+document.getElementById("getUserData").addEventListener("click", getUserData);
+document.getElementById("callRemoteApi").addEventListener("click", callRemoteApi);
+
 const name = document.getElementById("name");
 const date = document.getElementById("date");
 
+async function getUserData() {
+    var req = new Request("/bff/user", {
+        headers: new Headers({
+            'X-CSRF': '1'
+        })
+    })
+
+    try {
+        var resp = await fetch(req);
+        if (resp.ok) {
+            log("user logged in");
+
+            let claims = await resp.json();
+            showUser(claims);
+
+            let logoutUrlClaim = claims.find(claim => claim.type === 'bff:logout');
+            if (logoutUrlClaim) {
+                logoutUrl = logoutUrlClaim.value;
+            }
+        } else if (resp.status === 401) {
+            log("user not logged in");
+        }
+    }
+    catch (e) {
+        log("error checking user status");
+    }
+}
+
+async function callRemoteApi() {
+    var req = new Request("/remote", {
+        headers: new Headers({
+            'X-CSRF': '1'
+        })
+    })
+    var resp = await fetch(req);
+
+    log("API Result: " + resp.status);
+    if (resp.ok) {
+        log(await resp.json());
+    }
+}
 
 async function createTodo() {
     let request = new Request(todoUrl, {
@@ -86,6 +130,32 @@ async function deleteTodo(id) {
     if (result.ok) {
         deleteRow(id);
     }
+}
+
+function log() {
+    document.getElementById('response').innerText = '';
+
+    Array.prototype.forEach.call(arguments, function (msg) {
+        if (msg instanceof Error) {
+            msg = "Error: " + msg.message;
+        } else if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg, null, 2);
+        }
+        document.getElementById('response').innerText += msg + '\r\n';
+    });
+}
+
+function showUser() {
+    document.getElementById('response').innerText = '';
+
+    Array.prototype.forEach.call(arguments, function (msg) {
+        if (msg instanceof Error) {
+            msg = "Error: " + msg.message;
+        } else if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg, null, 2);
+        }
+        document.getElementById('response').innerText += msg + '\r\n';
+    });
 }
 
 

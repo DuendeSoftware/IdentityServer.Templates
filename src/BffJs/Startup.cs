@@ -83,8 +83,8 @@ namespace BffJs
                 endpoints.MapBffManagementEndpoints("/bff");
 
                 // enable proxying to remote API
-                //endpoints.MapRemoteBffApiEndpoint("/api", "https://api.mycompany.com")
-                //    .RequireAccessToken();
+                endpoints.MapRemoteBffApiEndpoint("/remote", "https://demo.duendesoftware.com/api/test")
+                    .RequireAccessToken();
             });
         }
     }
