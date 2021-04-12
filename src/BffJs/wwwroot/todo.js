@@ -1,12 +1,26 @@
 ﻿const todoUrl = "/todos";
+let logoutUrl = "/bff/logout";
+
 const todos = document.getElementById("todos");
 
-document.getElementById("createNewButton").addEventListener("click", createTodo);
+document.getElementById("login").addEventListener("click", login);
+document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("getUserData").addEventListener("click", getUserData);
 document.getElementById("callRemoteApi").addEventListener("click", callRemoteApi);
 
+document.getElementById("createNewButton").addEventListener("click", createTodo);
+
+
 const name = document.getElementById("name");
 const date = document.getElementById("date");
+
+function login() {
+    window.location = "/bff/login";
+}
+
+function logout() {
+    window.location = logoutUrl;
+}
 
 async function getUserData() {
     var req = new Request("/bff/user", {
