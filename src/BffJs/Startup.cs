@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IdentityModel.Tokens.Jwt;
+using Serilog;
 
 namespace BffJs
 {
@@ -59,6 +60,8 @@ namespace BffJs
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseSerilogRequestLogging();
+            
             if (_environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -80,7 +83,7 @@ namespace BffJs
                     .RequireAuthorization()
                     .AsLocalBffApiEndpoint();
 
-                endpoints.MapBffManagementEndpoints("/bff");
+                endpoints.MapBffManagementEndpoints();
 
                 // enable proxying to remote API
                 endpoints.MapRemoteBffApiEndpoint("/remote", "https://demo.duendesoftware.com/api/test")
