@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IdentityModel.Tokens.Jwt;
 using Serilog;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BffJs
 {
@@ -55,6 +56,12 @@ namespace BffJs
                     options.Scope.Add("profile");
                     options.Scope.Add("api");
                     options.Scope.Add("offline_access");
+                    
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = "name",
+                        RoleClaimType = "role"
+                    };
                 });
         }
 

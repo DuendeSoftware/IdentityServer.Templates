@@ -1,70 +1,15 @@
 ﻿const todoUrl = "/todos";
-let logoutUrl = "/bff/logout";
-
 const todos = document.getElementById("todos");
 
-document.getElementById("login").addEventListener("click", login);
-document.getElementById("logout").addEventListener("click", logout);
-document.getElementById("getUserData").addEventListener("click", getUserData);
-document.getElementById("callRemoteApi").addEventListener("click", callRemoteApi);
-
 document.getElementById("createNewButton").addEventListener("click", createTodo);
-
-
 const name = document.getElementById("name");
 const date = document.getElementById("date");
 
-function login() {
-    window.location = "/bff/login";
-}
-
-function logout() {
-    window.location = logoutUrl;
-}
-
-async function getUserData() {
-    var req = new Request("/bff/user", {
-        headers: new Headers({
-            'X-CSRF': '1'
-        })
-    })
-
-    try {
-        var resp = await fetch(req);
-        if (resp.ok) {
-            log("user logged in");
-
-            let claims = await resp.json();
-            showUser(claims);
-
-            let logoutUrlClaim = claims.find(claim => claim.type === 'bff:logout');
-            if (logoutUrlClaim) {
-                logoutUrl = logoutUrlClaim.value;
-            }
-        } else if (resp.status === 401) {
-            log("user not logged in");
-        }
-    }
-    catch (e) {
-        log("error checking user status");
-    }
-}
-
-async function callRemoteApi() {
-    var req = new Request("/remote", {
-        headers: new Headers({
-            'X-CSRF': '1'
-        })
-    })
-    var resp = await fetch(req);
-
-    log("API Result: " + resp.status);
-    if (resp.ok) {
-        log(await resp.json());
-    }
-}
+window.addEventListener("load", showTodos);
 
 async function createTodo() {
+    error();
+
     let request = new Request(todoUrl, {
         method: "POST",
         headers: {
@@ -82,6 +27,9 @@ async function createTodo() {
         var item = await result.json();
         addRow(item);
     }
+    else {
+        error(result.status)
+    }
 }
 
 async function showTodos() {
@@ -95,7 +43,48 @@ async function showTodos() {
         let data = await result.json();
         data.forEach(item => addRow(item));
     }
+    else if (result.status !== 401) {
+        // 401 == not logged in
+        error(result.status)
+    }
 }
+
+async function deleteTodo(id) {
+    error();
+
+    let request = new Request(todoUrl + "/" + id, {
+        headers: {
+            'x-csrf': '1'
+        },
+        method: "DELETE"
+    });
+
+    let result = await fetch(request);
+    if (result.ok) {
+        deleteRow(id);
+    }
+    else {
+        error(result.status)
+    }
+}
+
+
+/////// UI helpers
+
+function error(msg) {
+    let alert = document.querySelector(".alert");
+    let alertMsg = document.querySelector("#errText");
+
+    if (msg) {
+        alert.classList.remove("hide");
+        alertMsg.innerText = msg;
+    }
+    else {
+        alert.classList.add("hide");
+        alertMsg.innerText = '';
+    }
+}
+
 
 function addRow(item) {
     let row = document.createElement("tr");
@@ -112,6 +101,8 @@ function addRow(item) {
         let cell = document.createElement("td");
         row.appendChild(cell);
         let btn = document.createElement("button");
+        btn.classList.add("btn");
+        btn.classList.add("btn-danger");
         cell.appendChild(btn);
         btn.textContent = "delete";
         btn.addEventListener("click", async () => await deleteTodo(id));
@@ -131,48 +122,5 @@ async function deleteRow(id) {
         todos.removeChild(row);
     }
 }
-
-async function deleteTodo(id) {
-    let request = new Request(todoUrl + "/" + id, {
-        headers: {
-            'x-csrf': '1'
-        },
-        method: "DELETE"
-    });
-
-    let result = await fetch(request);
-    if (result.ok) {
-        deleteRow(id);
-    }
-}
-
-function log() {
-    document.getElementById('response').innerText = '';
-
-    Array.prototype.forEach.call(arguments, function (msg) {
-        if (msg instanceof Error) {
-            msg = "Error: " + msg.message;
-        } else if (typeof msg !== 'string') {
-            msg = JSON.stringify(msg, null, 2);
-        }
-        document.getElementById('response').innerText += msg + '\r\n';
-    });
-}
-
-function showUser() {
-    document.getElementById('response').innerText = '';
-
-    Array.prototype.forEach.call(arguments, function (msg) {
-        if (msg instanceof Error) {
-            msg = "Error: " + msg.message;
-        } else if (typeof msg !== 'string') {
-            msg = JSON.stringify(msg, null, 2);
-        }
-        document.getElementById('response').innerText += msg + '\r\n';
-    });
-}
-
-
-showTodos();
 
 
