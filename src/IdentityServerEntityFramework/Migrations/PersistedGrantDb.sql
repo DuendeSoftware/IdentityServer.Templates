@@ -45,6 +45,8 @@ CREATE INDEX "IX_DeviceCodes_Expiration" ON "DeviceCodes" ("Expiration");
 
 CREATE INDEX "IX_Keys_Use" ON "Keys" ("Use");
 
+CREATE INDEX "IX_PersistedGrants_ConsumedTime" ON "PersistedGrants" ("ConsumedTime");
+
 CREATE INDEX "IX_PersistedGrants_Expiration" ON "PersistedGrants" ("Expiration");
 
 CREATE INDEX "IX_PersistedGrants_SubjectId_ClientId_Type" ON "PersistedGrants" ("SubjectId", "ClientId", "Type");
@@ -52,5 +54,5 @@ CREATE INDEX "IX_PersistedGrants_SubjectId_ClientId_Type" ON "PersistedGrants" (
 CREATE INDEX "IX_PersistedGrants_SubjectId_SessionId_Type" ON "PersistedGrants" ("SubjectId", "SessionId", "Type");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20210113214818_Grants', '3.1.9');
+VALUES ('20210601182331_Grants', '3.1.0');
 

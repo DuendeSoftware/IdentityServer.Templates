@@ -8,6 +8,7 @@ using Serilog;
 using Duende.IdentityServer.EntityFramework.Storage;
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
+using Duende.IdentityServer.Models;
 
 namespace IdentityServerEntityFramework
 {
@@ -79,6 +80,23 @@ namespace IdentityServerEntityFramework
             else
             {
                 Log.Debug("ApiScopes already populated");
+            }
+
+            if (!context.IdentityProviders.Any())
+            {
+                Log.Debug("OIDC IdentityProviders being populated");
+                context.IdentityProviders.Add(new OidcProvider
+                {
+                    Scheme = "demoidsrv",
+                    DisplayName = "IdentityServer",
+                    Authority = "https://demo.duendesoftware.com",
+                    ClientId = "login",
+                }.ToEntity());
+                context.SaveChanges();
+            }
+            else
+            {
+                Log.Debug("OIDC IdentityProviders already populated");
             }
         }
     }

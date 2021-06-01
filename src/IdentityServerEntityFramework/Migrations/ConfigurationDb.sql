@@ -76,6 +76,15 @@ CREATE TABLE "Clients" (
     "NonEditable" INTEGER NOT NULL
 );
 
+CREATE TABLE "IdentityProviders" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_IdentityProviders" PRIMARY KEY AUTOINCREMENT,
+    "Scheme" TEXT NOT NULL,
+    "DisplayName" TEXT NULL,
+    "Enabled" INTEGER NOT NULL,
+    "Type" TEXT NOT NULL,
+    "Properties" TEXT NULL
+);
+
 CREATE TABLE "IdentityResources" (
     "Id" INTEGER NOT NULL CONSTRAINT "PK_IdentityResources" PRIMARY KEY AUTOINCREMENT,
     "Enabled" INTEGER NOT NULL,
@@ -265,5 +274,5 @@ CREATE INDEX "IX_IdentityResourceProperties_IdentityResourceId" ON "IdentityReso
 CREATE UNIQUE INDEX "IX_IdentityResources_Name" ON "IdentityResources" ("Name");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20210113214823_Configuration', '3.1.9');
+VALUES ('20210601182335_Configuration', '3.1.0');
 
