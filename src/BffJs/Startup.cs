@@ -88,7 +88,7 @@ namespace BffJs
             {
                 endpoints.MapControllers()
                     .RequireAuthorization()
-                    .AsLocalBffApiEndpoint();
+                    .AsBffApiEndpoint();
 
                 endpoints.MapBffManagementEndpoints();
 
