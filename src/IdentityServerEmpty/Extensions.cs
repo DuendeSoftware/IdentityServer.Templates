@@ -21,7 +21,7 @@ internal static class Extensions
         return builder.Build();
     }
     
-    public static void ConfigurePipeline(this WebApplication app)
+    public static WebApplication ConfigurePipeline(this WebApplication app)
     { 
         app.UseSerilogRequestLogging();
     
@@ -39,5 +39,7 @@ internal static class Extensions
         // uncomment, if you want to add a UI
         //app.UseAuthorization();
         //app.MapRazorPages().RequireAuthorization();
+
+        return app;
     }
 }
