@@ -2,15 +2,12 @@
 // See LICENSE in the project root for license information.
 
 
-using System;
-using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
 using IdentityServerAspNetIdentity.Data;
 using IdentityServerHost.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace IdentityServerAspNetIdentity
@@ -22,7 +19,7 @@ namespace IdentityServerAspNetIdentity
             var services = new ServiceCollection();
             services.AddLogging();
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlite(connectionString, o => o.MigrationsAssembly(typeof(Startup).Assembly.FullName)));
+               options.UseSqlite(connectionString, o => o.MigrationsAssembly(typeof(Program).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
