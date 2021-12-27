@@ -1,4 +1,4 @@
-﻿using IdentityServerEmpty;
+﻿using IdentityServerInMem;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
