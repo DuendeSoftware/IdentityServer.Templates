@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5B4906FF-64CC-4A42-A145-221F083EE165}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerEmpty", "src\IdentityServerEmpty\IdentityServerEmpty.csproj", "{D324CA74-877A-43AB-B978-38416BBE300A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerInMem", "src\IdentityServerInMem\IdentityServerInMem.csproj", "{6CEEA2E8-C482-4197-93D7-2AC94F99D0D0}"
