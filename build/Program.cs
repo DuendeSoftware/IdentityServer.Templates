@@ -7,7 +7,7 @@ namespace build
 {
     internal static class Program
     {
-        private const string NugetPackageVersion = "6.0.0";
+        private const string NugetPackageVersion = "6.0.0-preview.1";
         
         private const string packOutput = "./artifacts";
         private const string envVarMissing = " environment variable is missing. Aborting.";
