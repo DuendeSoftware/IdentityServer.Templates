@@ -222,5 +222,3 @@ src/IdentityServer4Admin/IdentityServer.db
 tempkey.jwk
 keys
 *.db
-*.db-shm
-*.db-wal

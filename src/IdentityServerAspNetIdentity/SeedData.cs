@@ -1,8 +1,4 @@
-﻿// Copyright (c) Duende Software. All rights reserved.
-// See LICENSE in the project root for license information.
-
-
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using IdentityModel;
 using IdentityServerAspNetIdentity.Data;
 using IdentityServerHost.Models;
