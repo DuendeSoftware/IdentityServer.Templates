@@ -28,7 +28,7 @@ public class TestUsers
             {
                 new TestUser
                 {
-                    SubjectId = "818727",
+                    SubjectId = "1",
                     Username = "alice",
                     Password = "alice",
                     Claims =
@@ -44,7 +44,7 @@ public class TestUsers
                 },
                 new TestUser
                 {
-                    SubjectId = "88421113",
+                    SubjectId = "2",
                     Username = "bob",
                     Password = "bob",
                     Claims =
