@@ -6,12 +6,12 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        // uncomment, if you want to add an MVC-based UI
-        //services.AddRazorPages();
+        // uncomment if you want to add a UI
+        //builder.services.AddRazorPages();
 
         builder.Services.AddIdentityServer(options =>
             {
-                // https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
+                // https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/api_scopes#authorization-based-on-scopes
                 options.EmitStaticAudienceClaim = true;
             })
             .AddInMemoryIdentityResources(Config.IdentityResources)
@@ -36,7 +36,7 @@ internal static class HostingExtensions
             
         app.UseIdentityServer();
 
-        // uncomment, if you want to add a UI
+        // uncomment if you want to add a UI
         //app.UseAuthorization();
         //app.MapRazorPages().RequireAuthorization();
 
