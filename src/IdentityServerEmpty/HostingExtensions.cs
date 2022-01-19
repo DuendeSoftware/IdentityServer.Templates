@@ -7,7 +7,7 @@ internal static class HostingExtensions
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         // uncomment if you want to add a UI
-        //builder.services.AddRazorPages();
+        //builder.Services.AddRazorPages();
 
         builder.Services.AddIdentityServer(options =>
             {
