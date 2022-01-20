@@ -12,8 +12,18 @@
     "language": "C#",
     "type": "project"
   },
-  
+
   "sourceName": "IdentityServerInMem",
   "preferNameDirectory": "true",
-  "primaryOutputs": [ { "path": "IdentityServerInMem.csproj" } ]
+  "primaryOutputs": [ { "path": "IdentityServerInMem.csproj" } ],
+  "symbols": {
+    "RenameCommonNamespace": {
+      "datatype": "string",
+      "displayName": "Fix common host namespace.",
+      "replaces": "IdentityServerHost",
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_namespace"
+    }
+  }
 }
