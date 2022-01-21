@@ -202,10 +202,8 @@ docs/_build/
 tools/
 .dotnet
 feed/content/
-UI/
-UI/Views/
+UI/Pages/
 UI/wwwroot/
-UI/Quickstart/
 
 # Rider
 .idea
