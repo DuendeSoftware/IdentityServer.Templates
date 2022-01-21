@@ -202,6 +202,7 @@ docs/_build/
 tools/
 .dotnet
 feed/content/
+UI/
 UI/Views/
 UI/wwwroot/
 UI/Quickstart/
