@@ -23,10 +23,20 @@
       "executable": "dotnet",
       "args": "run /seed"
     },
-    "manualInstructions": [{ 
-       "text": "Seeds the initial database" 
-       }],
+    "manualInstructions": [{
+       "text": "Seeds the initial database"
+    }],
     "continueOnError": "false",
     "description ": "seeds the database"
-  }]
+  }],
+  "symbols": {
+    "RenameCommonNamespace": {
+      "datatype": "string",
+      "displayName": "Fix common host namespace.",
+      "replaces": "IdentityServerHost",
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_namespace"
+    }
+  }
 }
