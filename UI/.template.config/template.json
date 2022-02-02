@@ -12,5 +12,15 @@
     "language": "C#"
   },
   "sourceName": "IdentityServer.Quickstart.UI",
-  "preferNameDirectory": "true"
+  "preferNameDirectory": "true",
+   "symbols": {
+    "RenameCommonNamespace": {
+      "datatype": "string",
+      "displayName": "Fix common host namespace.",
+      "replaces": "IdentityServerHost",
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_namespace"
+    }
+  }
 }
