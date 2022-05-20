@@ -17,7 +17,7 @@ internal static class HostingExtensions
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-        builder.Services
+        var isBuilder = builder.Services
             .AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -61,6 +61,7 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
+
         // this adds the necessary config for the simple admin/config pages
         {
             builder.Services.AddAuthorization(options =>
@@ -75,6 +76,14 @@ internal static class HostingExtensions
             builder.Services.AddTransient<IdentityScopeRepository>();
             builder.Services.AddTransient<ApiScopeRepository>();
         }
+        
+        // if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
+        // then enable it
+        //isBuilder.AddServerSideSessions();
+        //
+        // and put some authorization on the admin/management pages using the same policy created above
+        //builder.Services.Configure<RazorPagesOptions>(options =>
+        //    options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 
         return builder.Build();
     }

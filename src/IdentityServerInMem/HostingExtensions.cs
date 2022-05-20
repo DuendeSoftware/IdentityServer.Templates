@@ -1,5 +1,6 @@
 using Duende.IdentityServer;
 using IdentityServerHost;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Serilog;
 
 namespace IdentityServerInMem;
@@ -26,7 +27,21 @@ internal static class HostingExtensions
         isBuilder.AddInMemoryIdentityResources(Config.IdentityResources);
         isBuilder.AddInMemoryApiScopes(Config.ApiScopes);
         isBuilder.AddInMemoryClients(Config.Clients);
-        
+
+
+        // if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
+        // then enable it
+        isBuilder.AddServerSideSessions();
+        //
+        // and put some authorization on the admin/management pages
+        //builder.Services.AddAuthorization(options =>
+        //       options.AddPolicy("admin",
+        //           policy => policy.RequireClaim("sub", "1"))
+        //   );
+        //builder.Services.Configure<RazorPagesOptions>(options =>
+        //    options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
+
+
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
             {

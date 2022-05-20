@@ -221,3 +221,4 @@ src/IdentityServer4Admin/IdentityServer.db
 tempkey.jwk
 keys
 *.db
+src/IdentityServerEntityFramework/IdentityServer.db*

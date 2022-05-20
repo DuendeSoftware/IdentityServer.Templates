@@ -346,6 +346,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                     b.Property<int?>("ConsentLifetime")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool?>("CoordinateLifetimeWithUserSession")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 

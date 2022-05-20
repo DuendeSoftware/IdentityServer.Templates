@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
 {
     [DbContext(typeof(ConfigurationDbContext))]
-    [Migration("20211228182155_Configuration")]
+    [Migration("20220520163639_Configuration")]
     partial class Configuration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -346,6 +346,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("ConsentLifetime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool?>("CoordinateLifetimeWithUserSession")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
