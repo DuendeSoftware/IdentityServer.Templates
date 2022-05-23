@@ -31,7 +31,7 @@ internal static class HostingExtensions
 
         // if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
         // then enable it
-        isBuilder.AddServerSideSessions();
+        //isBuilder.AddServerSideSessions();
         //
         // and put some authorization on the admin/management pages
         //builder.Services.AddAuthorization(options =>
