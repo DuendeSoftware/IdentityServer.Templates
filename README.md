@@ -23,13 +23,18 @@ Creates a basic JavaScript-based BFF host
 
 Install with:
 
-`dotnet new --install Duende.IdentityServer.Templates`
+.NET 6 SDK: `dotnet new --install Duende.IdentityServer.Templates`
+
+.NET 7 SDK: `dotnet new install Duende.IdentityServer.Templates`
+
 
 If you need to set back your dotnet new list to "factory defaults", use this command:
 
 `dotnet new --debug:reinit`
 
+
 To uninstall the templates, use 
 
-`dotnet new -u Duende.IdentityServer.Templates`
+.NET 6 SDK: `dotnet new -u Duende.IdentityServer.Templates`
 
+.NET 7 SDK: `dotnet new uninstall Duende.IdentityServer.Templates`
