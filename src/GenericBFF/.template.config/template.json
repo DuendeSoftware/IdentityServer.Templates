@@ -1,0 +1,23 @@
+{
+  "author": "Duende Software",
+  "classifications": [
+    "Web",
+    "IdentityServer"
+  ],
+  "name": "Duende BFF Host",
+  "identity": "IdentityServer.BFF",
+  "groupIdentity": "IdentityServer.BFF",
+  "shortName": "bff",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "GenericBFF",
+  "preferNameDirectory": "true",
+  "primaryOutputs": [
+    {
+      "path": "GenericBFF.csproj"
+    }
+  ]
+}
+}
