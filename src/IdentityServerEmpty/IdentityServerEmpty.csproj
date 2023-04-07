@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Duende.IdentityServer" Version="6.2.0" />
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Duende.IdentityServer" Version="6.3.0-preview.1.1" />
+
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
+	</ItemGroup>
 </Project>
