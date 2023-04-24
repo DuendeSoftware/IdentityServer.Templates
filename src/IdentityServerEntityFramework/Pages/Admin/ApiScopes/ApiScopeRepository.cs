@@ -9,13 +9,13 @@ namespace IdentityServerHost.Pages.Admin.ApiScopes;
 public class ApiScopeSummaryModel
 {
     [Required]
-    public string Name { get; set; }
-    public string DisplayName { get; set; }
+    public string? Name { get; set; }
+    public string? DisplayName { get; set; }
 }
 
 public class ApiScopeModel : ApiScopeSummaryModel
 {
-    public string UserClaims { get; set; }
+    public string? UserClaims { get; set; }
 }
 
 
@@ -28,7 +28,7 @@ public class ApiScopeRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<ApiScopeSummaryModel>> GetAllAsync(string filter = null)
+    public async Task<IEnumerable<ApiScopeSummaryModel>> GetAllAsync(string? filter = null)
     {
         var query = _context.ApiScopes
             .Include(x => x.UserClaims)
@@ -48,7 +48,7 @@ public class ApiScopeRepository
         return await result.ToArrayAsync();
     }
 
-    public async Task<ApiScopeModel> GetByIdAsync(string id)
+    public async Task<ApiScopeModel?> GetByIdAsync(string id)
     {
         var scope = await _context.ApiScopes
             .Include(x => x.UserClaims)
@@ -64,7 +64,7 @@ public class ApiScopeRepository
         };
     }
 
-    public async Task CreateAsync(ApiScopeModel model)
+    internal async Task CreateAsync(ApiScopeModel model)
     {
         var scope = new Duende.IdentityServer.Models.ApiScope()
         {
@@ -82,13 +82,13 @@ public class ApiScopeRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(ApiScopeModel model)
+    internal async Task UpdateAsync(ApiScopeModel model)
     {
         var scope = await _context.ApiScopes
             .Include(x => x.UserClaims)
             .SingleOrDefaultAsync(x => x.Name == model.Name);
 
-        if (scope == null) throw new Exception("Invalid Api Scope");
+        if (scope == null) throw new InvalidOperationException("Invalid Api Scope");
 
         if (scope.DisplayName != model.DisplayName)
         {
@@ -120,7 +120,7 @@ public class ApiScopeRepository
     {
         var scope = await _context.ApiScopes.SingleOrDefaultAsync(x => x.Name == id);
 
-        if (scope == null) throw new Exception("Invalid Api Scope");
+        if (scope == null) throw new InvalidOperationException("Invalid Api Scope");
 
         _context.ApiScopes.Remove(scope);
         await _context.SaveChangesAsync();

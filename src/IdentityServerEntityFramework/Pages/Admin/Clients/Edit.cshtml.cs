@@ -16,19 +16,23 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public ClientModel InputModel { get; set; }
+    public ClientModel InputModel { get; set; } = default!;
     [BindProperty]
-    public string Button { get; set; }
+    public string? Button { get; set; }
 
     public async Task<IActionResult> OnGetAsync(string id)
     {
-        InputModel = await _repository.GetByIdAsync(id);
-        if (InputModel == null)
+        var client = await _repository.GetByIdAsync(id);
+        if (client == null)
         {
             return RedirectToPage("/Admin/Clients/Index");
         }
+        else
+        {
+            InputModel = client;
+            return Page();
+        }
 
-        return Page();
     }
 
     public async Task<IActionResult> OnPostAsync(string id)
@@ -41,6 +45,7 @@ public class EditModel : PageModel
 
         if (ModelState.IsValid)
         {
+            ArgumentNullException.ThrowIfNull(InputModel);
             await _repository.UpdateAsync(InputModel);
             return RedirectToPage("/Admin/Clients/Edit", new { id });
         }
