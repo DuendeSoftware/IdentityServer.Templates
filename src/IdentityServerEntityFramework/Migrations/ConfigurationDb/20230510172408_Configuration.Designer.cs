@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
 {
     [DbContext(typeof(ConfigurationDbContext))]
-    [Migration("20220520163639_Configuration")]
+    [Migration("20230510172408_Configuration")]
     partial class Configuration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -354,6 +354,12 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
+                    b.Property<TimeSpan>("DPoPClockSkew")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DPoPValidationMode")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
@@ -379,6 +385,10 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
 
                     b.Property<bool>("IncludeJwtId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("InitiateLoginUri")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("LastAccessed")
                         .HasColumnType("TEXT");
@@ -412,6 +422,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequireConsent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("RequireDPoP")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequirePkce")

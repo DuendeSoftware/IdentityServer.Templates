@@ -82,7 +82,7 @@ CREATE INDEX "IX_ServerSideSessions_SessionId" ON "ServerSideSessions" ("Session
 CREATE INDEX "IX_ServerSideSessions_SubjectId" ON "ServerSideSessions" ("SubjectId");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20220520163634_Grants', '6.0.0');
+VALUES ('20230510172403_Grants', '6.0.0');
 
 COMMIT;
 
