@@ -52,6 +52,9 @@ CREATE TABLE "Clients" (
     "AllowPlainTextPkce" INTEGER NOT NULL,
     "RequireRequestObject" INTEGER NOT NULL,
     "AllowAccessTokensViaBrowser" INTEGER NOT NULL,
+    "RequireDPoP" INTEGER NOT NULL,
+    "DPoPValidationMode" INTEGER NOT NULL,
+    "DPoPClockSkew" TEXT NOT NULL,
     "FrontChannelLogoutUri" TEXT NULL,
     "FrontChannelLogoutSessionRequired" INTEGER NOT NULL,
     "BackChannelLogoutUri" TEXT NULL,
@@ -73,6 +76,7 @@ CREATE TABLE "Clients" (
     "AlwaysSendClientClaims" INTEGER NOT NULL,
     "ClientClaimsPrefix" TEXT NULL,
     "PairWiseSubjectSalt" TEXT NULL,
+    "InitiateLoginUri" TEXT NULL,
     "UserSsoLifetime" INTEGER NULL,
     "UserCodeType" TEXT NULL,
     "DeviceCodeLifetime" INTEGER NOT NULL,
@@ -289,7 +293,7 @@ CREATE UNIQUE INDEX "IX_IdentityResourceProperties_IdentityResourceId_Key" ON "I
 CREATE UNIQUE INDEX "IX_IdentityResources_Name" ON "IdentityResources" ("Name");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20220520163639_Configuration', '6.0.0');
+VALUES ('20230510172408_Configuration', '6.0.0');
 
 COMMIT;
 

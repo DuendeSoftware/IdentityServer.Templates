@@ -352,6 +352,12 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
+                    b.Property<TimeSpan>("DPoPClockSkew")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DPoPValidationMode")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
@@ -377,6 +383,10 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
 
                     b.Property<bool>("IncludeJwtId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("InitiateLoginUri")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("LastAccessed")
                         .HasColumnType("TEXT");
@@ -410,6 +420,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequireConsent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("RequireDPoP")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequirePkce")
