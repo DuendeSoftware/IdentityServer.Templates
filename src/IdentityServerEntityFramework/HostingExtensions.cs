@@ -43,10 +43,6 @@ internal static class HostingExtensions
             {
                 options.ConfigureDbContext = b =>
                     b.UseSqlite(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Program).Assembly.FullName));
-
-                // this enables automatic token cleanup. this is optional.
-                options.EnableTokenCleanup = true;
-                options.RemoveConsumedTokens = true;
             });
 
         builder.Services.AddAuthentication()
