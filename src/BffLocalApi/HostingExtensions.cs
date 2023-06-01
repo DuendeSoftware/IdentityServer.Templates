@@ -13,7 +13,8 @@ internal static class HostingExtensions
 
         // add BFF services and server-side session management
         builder.Services.AddBff()
-            .AddRemoteApis()
+            // if you wanted to enable a remote API (in addition or instead of the local API), then you could uncomment this line
+            //.AddRemoteApis()
             .AddServerSideSessions();
 
         builder.Services.AddAuthentication(options =>
@@ -77,7 +78,7 @@ internal static class HostingExtensions
 
         app.MapBffManagementEndpoints();
 
-        // if you wanted to change this or enable a remote API, then you could .... enable proxying to remote API
+        // if you wanted to enable a remote API (in addition or instead of the local API), then you could uncomment these lines
         //app.MapRemoteBffApiEndpoint("/remote", "https://api.your-server.com/api/test")
         //    .RequireAccessToken();
 
