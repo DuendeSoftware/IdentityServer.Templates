@@ -1,4 +1,4 @@
-﻿using BffJs;
+﻿using BffLocalApi;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()

@@ -1,6 +1,6 @@
 using Duende.Bff;
 
-namespace GenericBFF;
+namespace BffRemoteApi;
 
 /// <summary>
 /// Configuration section

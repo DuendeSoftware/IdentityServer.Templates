@@ -1,7 +1,7 @@
 using Duende.Bff.Yarp;
 using Serilog;
 
-namespace BffJs;
+namespace BffLocalApi;
 
 internal static class HostingExtensions
 {
@@ -77,9 +77,9 @@ internal static class HostingExtensions
 
         app.MapBffManagementEndpoints();
 
-        // enable proxying to remote API
-        app.MapRemoteBffApiEndpoint("/remote", "https://demo.duendesoftware.com/api/test")
-            .RequireAccessToken();
+        // if you wanted to change this or enable a remote API, then you could .... enable proxying to remote API
+        //app.MapRemoteBffApiEndpoint("/remote", "https://api.your-server.com/api/test")
+        //    .RequireAccessToken();
 
         return app;
     }
