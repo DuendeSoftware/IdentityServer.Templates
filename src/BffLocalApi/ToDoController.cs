@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BffJs;
+namespace BffLocalApi;
 
 public class ToDoController : ControllerBase
 {

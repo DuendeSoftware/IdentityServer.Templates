@@ -81,45 +81,47 @@ document.querySelector(".show_session").addEventListener("click", async () => {
 
 });
 
-document.querySelector(".remote_api").addEventListener("click", async () => {
-    var req = new Request("/remote", {
-        headers: new Headers({
-            'X-CSRF': '1'
+var remote_button = document.querySelector(".remote_api");
+if (remote_button) {
+    remote_button.addEventListener("click", async () => {
+        var req = new Request("/remote", {
+            headers: new Headers({
+                'X-CSRF': '1'
+            })
         })
-    })
 
+        try {
+            var resp = await fetch(req);
+            if (resp.ok) {
+                let claims = await resp.json();
 
-    try {
-        var resp = await fetch(req);
-        if (resp.ok) {
-            let claims = await resp.json();
+                document.querySelector(".modal-title").innerText = "Remote API Results";
 
-            document.querySelector(".modal-title").innerText = "Remote API Results";
+                let body = document.querySelector("#claims");
+                body.innerHTML = "";
 
-            let body = document.querySelector("#claims");
-            body.innerHTML = "";
+                claims.forEach(claim => {
+                    var c1 = document.createElement("td");
+                    c1.innerText = claim.type;
+                    var c2 = document.createElement("td");
+                    c2.innerText = claim.value;
+                    var r = document.createElement("tr");
+                    r.appendChild(c1);
+                    r.appendChild(c2);
+                    body.appendChild(r);
+                });
 
-            claims.forEach(claim => {
-                var c1 = document.createElement("td");
-                c1.innerText = claim.type;
-                var c2 = document.createElement("td");
-                c2.innerText = claim.value;
-                var r = document.createElement("tr");
-                r.appendChild(c1);
-                r.appendChild(c2);
-                body.appendChild(r);
-            });
+                var modal = document.querySelector(".modal");
+                var myModal = new bootstrap.Modal(modal);
+                myModal.toggle();
+            }
+            else if (resp.status === 401) {
+            }
 
-            var modal = document.querySelector(".modal");
-            var myModal = new bootstrap.Modal(modal);
-            myModal.toggle();
         }
-        else if (resp.status === 401) {
+        catch (e) {
+            console.log("error checking remote API");
         }
 
-    }
-    catch (e) {
-        console.log("error checking remote API");
-    }
-
-});
+    });
+}

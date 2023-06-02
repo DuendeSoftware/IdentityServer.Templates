@@ -1,7 +1,7 @@
 using Duende.Bff.Yarp;
 using Serilog;
 
-namespace BffJs;
+namespace BffLocalApi;
 
 internal static class HostingExtensions
 {
@@ -13,7 +13,8 @@ internal static class HostingExtensions
 
         // add BFF services and server-side session management
         builder.Services.AddBff()
-            .AddRemoteApis()
+            // if you wanted to enable a remote API (in addition or instead of the local API), then you could uncomment this line
+            //.AddRemoteApis()
             .AddServerSideSessions();
 
         builder.Services.AddAuthentication(options =>
@@ -77,9 +78,9 @@ internal static class HostingExtensions
 
         app.MapBffManagementEndpoints();
 
-        // enable proxying to remote API
-        app.MapRemoteBffApiEndpoint("/remote", "https://demo.duendesoftware.com/api/test")
-            .RequireAccessToken();
+        // if you wanted to enable a remote API (in addition or instead of the local API), then you could uncomment these lines
+        //app.MapRemoteBffApiEndpoint("/remote", "https://api.your-server.com/api/test")
+        //    .RequireAccessToken();
 
         return app;
     }

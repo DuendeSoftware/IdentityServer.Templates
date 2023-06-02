@@ -1,5 +1,5 @@
 using Duende.Bff.Yarp;
-using GenericBFF;
+using BffRemoteApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
