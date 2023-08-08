@@ -23,7 +23,7 @@ public class SecurityHeadersAttribute : ActionFilterAttribute
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
             if (!context.HttpContext.Response.Headers.ContainsKey("X-Frame-Options"))
             {
-                context.HttpContext.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                context.HttpContext.Response.Headers.Add("X-Frame-Options", "DENY");
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
