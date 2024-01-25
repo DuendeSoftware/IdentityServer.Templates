@@ -11,13 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
 {
     [DbContext(typeof(ConfigurationDbContext))]
-    [Migration("20230510172408_Configuration")]
+    [Migration("20240123193245_Configuration")]
     partial class Configuration
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.ApiResource", b =>
                 {
@@ -412,6 +413,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PushedAuthorizationLifetime")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("RefreshTokenExpiration")
                         .HasColumnType("INTEGER");
 
@@ -428,6 +432,9 @@ namespace IdentityServerEntityFramework.Migrations.ConfigurationDb
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequirePkce")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("RequirePushedAuthorization")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("RequireRequestObject")
