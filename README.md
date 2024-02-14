@@ -26,9 +26,7 @@ Creates a basic JavaScript-based BFF host that invokes a local API co-hosted wit
 
 Install with:
 
-.NET 6 SDK: `dotnet new --install Duende.IdentityServer.Templates`
-
-.NET 7 SDK: `dotnet new install Duende.IdentityServer.Templates`
+`dotnet new install Duende.IdentityServer.Templates`
 
 
 If you need to set back your dotnet new list to "factory defaults", use this command:
@@ -38,6 +36,4 @@ If you need to set back your dotnet new list to "factory defaults", use this com
 
 To uninstall the templates, use 
 
-.NET 6 SDK: `dotnet new -u Duende.IdentityServer.Templates`
-
-.NET 7 SDK: `dotnet new uninstall Duende.IdentityServer.Templates`
+`dotnet new uninstall Duende.IdentityServer.Templates`
