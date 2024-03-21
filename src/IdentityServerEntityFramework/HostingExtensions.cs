@@ -3,6 +3,7 @@ using IdentityServerHost;
 using IdentityServerHost.Pages.Admin.ApiScopes;
 using IdentityServerHost.Pages.Admin.Clients;
 using IdentityServerHost.Pages.Admin.IdentityScopes;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -16,6 +17,20 @@ internal static class HostingExtensions
         builder.Services.AddRazorPages();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+        // The data protection services are registered automatically, but the default configuration is not
+        // sufficient for production scenarios, see https://docs.duendesoftware.com/dataprotection.
+        builder.Services.AddDataProtection()
+            // Choose an extension method for key persistence, such as 
+            // PersistKeysToFileSystem, PersistKeysToDbContext, 
+            // PersistKeysToAzureBlobStorage, or PersistKeysToAWSSystemsManager
+            //.PersistKeysToFoo()
+            // Choose an extension method for key protection, such as 
+            // ProtectKeysWithCertificate, ProtectKeysWithAzureKeyVault
+            //.ProtectKeysWithBar()
+            // Explicitly set an application name to prevent issues with
+            // key isolation. 
+            .SetApplicationName(typeof(HostingExtensions).Namespace!);
 
         var isBuilder = builder.Services
             .AddIdentityServer(options =>

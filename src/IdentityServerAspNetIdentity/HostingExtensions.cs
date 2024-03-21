@@ -1,6 +1,7 @@
 using Duende.IdentityServer;
 using IdentityServerAspNetIdentity.Data;
 using IdentityServerHost.Models;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -19,6 +20,20 @@ internal static class HostingExtensions
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+        // The data protection services are registered automatically, but the default configuration is not
+        // sufficient for production scenarios, see https://docs.duendesoftware.com/dataprotection.
+        builder.Services.AddDataProtection()
+            // Choose an extension method for key persistence, such as 
+            // PersistKeysToFileSystem, PersistKeysToDbContext, 
+            // PersistKeysToAzureBlobStorage, or PersistKeysToAWSSystemsManager
+            //.PersistKeysToFoo()
+            // Choose an extension method for key protection, such as 
+            // ProtectKeysWithCertificate, ProtectKeysWithAzureKeyVault
+            //.ProtectKeysWithBar()
+            // Explicitly set an application name to prevent issues with
+            // key isolation. 
+            .SetApplicationName(typeof(HostingExtensions).Namespace!);
 
         builder.Services
             .AddIdentityServer(options =>
