@@ -1,4 +1,8 @@
 # IdentityServer.Templates
+
+> [!IMPORTANT]
+> Templates are now managed within the [products repository](https://github.com/DuendeSoftware/products/tree/main/templates).
+
 .NET CLI Templates for Duende IdentityServer
 
 ### dotnet new isempty
